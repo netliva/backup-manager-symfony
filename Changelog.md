@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.1
+
+### Added
+
+- Add Symfony 6 support to dev as well
+
 ## 3.3.0
 
 ### Added
