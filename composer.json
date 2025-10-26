@@ -1,6 +1,6 @@
 {
     "name": "netliva/backup-manager-symfony",
-    "version": "3.2.0",
+    "version": "3.3.0",
     "description": "A simple database backup manager for Symfony2 with support for S3, Rackspace, Dropbox, FTP, SFTP.",
     "keywords": ["database","backup","Symfony","S3","Rackspace","Dropbox","FTP","SFTP"],
     "type": "symfony-bundle",
@@ -35,12 +35,13 @@
         "symfony/phpunit-bridge": "^5.0 || ^6.0"
     },
     "suggest": {
-        "league/flysystem-aws-s3-v3": "To use AWS S3, version 3",
+        "league/flysystem": "^3.0 To use Local and FTP adapters",
+        "league/flysystem-aws-s3-v3": "^3.0 To use AWS S3",
+        "league/flysystem-ftp": "^3.0 To use FTP",
+        "league/flysystem-sftp-v3": "^3.0 To use SFTP",
         "mhetreramesh/flysystem-backblaze": "To use B2",
         "srmklive/flysystem-dropbox-v2": "To use Dropbox",
-        "superbalist/flysystem-google-storage": "Google Cloud Storage adapter support.",
-        "league/flysystem-rackspace": "To use Rackspace",
-        "league/flysystem-sftp": "To use sftp"
+        "superbalist/flysystem-google-storage": "Google Cloud Storage adapter support."
     },
     "autoload": {
         "psr-4": { "BM\\BackupManagerBundle\\": "" }
@@ -54,7 +55,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.2.x-dev"
+            "dev-master": "3.3.x-dev"
         }
     }
 }

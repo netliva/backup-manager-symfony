@@ -2,14 +2,15 @@
 
 namespace BM\BackupManagerBundle\DependencyInjection;
 
-use League\Flysystem\Adapter\Ftp;
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
-use League\Flysystem\Dropbox\DropboxAdapter;
+use League\Flysystem\Ftp\FtpAdapter as Ftp;
+use League\Flysystem\Local\LocalFilesystemAdapter as Local;
+use League\Flysystem\AwsS3V3\AwsS3V3Adapter as AwsS3Adapter;
+use League\Flysystem\AsyncAwsS3\AsyncAwsS3Adapter;
 use Mhetreramesh\Flysystem\BackblazeAdapter;
+use Spatie\FlysystemDropbox\DropboxAdapter;
+use Spatie\Dropbox\Client as DropboxClient;
 use Srmklive\Dropbox\Adapter\DropboxAdapter as Dropbox2Adapter;
-use League\Flysystem\Rackspace\RackspaceAdapter;
-use League\Flysystem\Sftp\SftpAdapter;
+use League\Flysystem\PhpseclibV3\SftpAdapter;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -69,14 +70,13 @@ class BMBackupManagerExtension extends Extension
     private function validateStorage(array $config)
     {
         $requirements = [
-            'Local' => ['package'=>'league/flysystem:^1.0', 'test'=>Local::class],
-            'AwsS3' => ['package'=>'league/flysystem-aws-s3-v3:^1.0', 'test'=>AwsS3Adapter::class],
+            'Local' => ['package'=>'league/flysystem:^3.0', 'test'=>Local::class],
+            'AwsS3' => ['package'=>'league/flysystem-aws-s3-v3:^3.0', 'test'=>AwsS3Adapter::class],
             'B2' => ['package'=>'mhetreramesh/flysystem-backblaze:^1.0', 'test'=>BackblazeAdapter::class],
-            'Rackspace' => ['package'=>'league/flysystem-rackspace:^1.0', 'test'=>RackspaceAdapter::class],
-            'Dropbox' => ['package'=>'league/flysystem-dropbox:^1.0', 'test'=>DropboxAdapter::class],
+            'Dropbox' => ['package'=>'spatie/flysystem-dropbox:^3.0', 'test'=>DropboxAdapter::class],
             'DropboxV2' => ['package'=>'srmklive/flysystem-dropbox-v2:^1.0', 'test'=>Dropbox2Adapter::class],
-            'Ftp' => ['package'=>'league/flysystem:^1.0', 'test'=>Ftp::class],
-            'Sftp' => ['package'=>'league/flysystem-sftp:^1.0', 'test'=>SftpAdapter::class],
+            'Ftp' => ['package'=>'league/flysystem-ftp:^3.0', 'test'=>Ftp::class],
+            'Sftp' => ['package'=>'league/flysystem-sftp-v3:^3.0', 'test'=>SftpAdapter::class],
             'Gcs' => ['package' => 'superbalist/flysystem-google-storage:^6.0', 'test' => GoogleStorageAdapter::class],
         ];
 
